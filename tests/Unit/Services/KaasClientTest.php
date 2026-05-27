@@ -19,7 +19,7 @@ it('resolves with the response body on HTTP 200', function () {
         ->once()
         ->with(
             'https://kaas.procionegobbo.it/api/generate-kobold',
-            ['Content-Type' => 'application/json'],
+            ['Content-Type' => 'application/json', 'X-Bypass-Key' => config('discord.kaas_bypass_key')],
             '{"language":"it"}'
         )
         ->andReturn(\React\Promise\resolve(fakeResponse(200, '{"KoboldName":"Grix"}')));

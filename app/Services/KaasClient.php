@@ -15,7 +15,7 @@ class KaasClient
     {
         return $this->browser->post(
             config('discord.kaas_url'),
-            ['Content-Type' => 'application/json'],
+            ['Content-Type' => 'application/json', 'X-Bypass-Key' => config('discord.kaas_bypass_key')],
             json_encode(['language' => 'it']),
         )->then(function ($response) {
             $status = $response->getStatusCode();
