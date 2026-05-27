@@ -1,0 +1,6 @@
+- [001-install-discordphp-and-configure-token.md](COMPLETED/001-install-discordphp-and-configure-token.md)
+- [002-ioc-bindings-for-discord-client-and-services.md](COMPLETED/002-ioc-bindings-for-discord-client-and-services.md)
+- [003-bot-run-command-and-discord-bot-service.md](COMPLETED/003-bot-run-command-and-discord-bot-service.md)
+- [004-message-handler-registry.md](COMPLETED/004-message-handler-registry.md)
+- [005-message-command-handlers.md](COMPLETED/005-message-command-handlers.md)
+- [006-feature-tests-for-bot-run-command.md](COMPLETED/006-feature-tests-for-bot-run-command.md)

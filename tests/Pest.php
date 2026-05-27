@@ -1,5 +1,10 @@
 <?php
 
+use Discord\Discord;
+use Discord\Parts\Channel\Message;
+use Tests\Support\FakeMessage;
+use Tests\TestCase;
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -11,7 +16,7 @@
 |
 */
 
-uses(Tests\TestCase::class)->in('Feature');
+uses(TestCase::class)->in('Feature');
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +44,14 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something(): void
+/**
+ * Build a deterministic Message test double with the given attributes.
+ *
+ * @param  array<string, mixed>  $attributes
+ */
+function fakeMessage(array $attributes): Message
 {
-    // ..
+    $discord = Mockery::mock(Discord::class);
+
+    return new FakeMessage($discord, $attributes);
 }
