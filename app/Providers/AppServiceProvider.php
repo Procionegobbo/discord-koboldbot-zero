@@ -7,10 +7,12 @@ use App\Handlers\KciaoHandler;
 use App\Handlers\KoboldoHandler;
 use App\Handlers\MessageHandlerRegistry;
 use App\Services\DiscordBotService;
+use App\Services\KaasClient;
 use Discord\Discord;
 use Discord\WebSockets\Intents;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
+use React\Http\Browser;
 use RuntimeException;
 
 class AppServiceProvider extends ServiceProvider
@@ -36,9 +38,13 @@ class AppServiceProvider extends ServiceProvider
             }
 
             return new Discord([
-                'token'   => $token,
+                'token' => $token,
                 'intents' => Intents::getDefaultIntents() | Intents::MESSAGE_CONTENT,
             ]);
+        });
+
+        $this->app->singleton(KaasClient::class, function () {
+            return new KaasClient(new Browser);
         });
 
         $this->app->singleton(MessageHandlerRegistry::class, function (Application $app) {

@@ -18,6 +18,11 @@ use Tests\TestCase;
 
 uses(TestCase::class)->in('Feature');
 
+// KaasClient calls the framework `config()` helper, which requires a booted
+// application container. Bind the Laravel Zero TestCase for these unit tests
+// so `config('discord.kaas_url')` resolves to its configured default.
+uses(TestCase::class)->in('Unit/Services');
+
 /*
 |--------------------------------------------------------------------------
 | Expectations
