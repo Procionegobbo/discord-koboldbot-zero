@@ -4,10 +4,11 @@ namespace App\Providers;
 
 use App\Handlers\KaiutoHandler;
 use App\Handlers\KciaoHandler;
-use App\Handlers\KobolodoHandler;
+use App\Handlers\KoboldoHandler;
 use App\Handlers\MessageHandlerRegistry;
 use App\Services\DiscordBotService;
 use Discord\Discord;
+use Discord\WebSockets\Intents;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use RuntimeException;
@@ -35,7 +36,8 @@ class AppServiceProvider extends ServiceProvider
             }
 
             return new Discord([
-                'token' => $token,
+                'token'   => $token,
+                'intents' => Intents::getDefaultIntents() | Intents::MESSAGE_CONTENT,
             ]);
         });
 
@@ -43,7 +45,7 @@ class AppServiceProvider extends ServiceProvider
             $registry = new MessageHandlerRegistry;
             $registry->register('!kciao', $app->make(KciaoHandler::class));
             $registry->register('!kaiuto', $app->make(KaiutoHandler::class));
-            $registry->register('!koboldo', $app->make(KobolodoHandler::class));
+            $registry->register('!koboldo', $app->make(KoboldoHandler::class));
 
             return $registry;
         });

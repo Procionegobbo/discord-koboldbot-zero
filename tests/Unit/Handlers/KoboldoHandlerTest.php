@@ -1,6 +1,6 @@
 <?php
 
-use App\Handlers\KobolodoHandler;
+use App\Handlers\KoboldoHandler;
 use Discord\Discord;
 use Discord\Parts\Channel\Channel;
 
@@ -13,5 +13,5 @@ it('sends "Koboldo in arrivo!" to the channel', function () {
     $message = fakeMessage(['channel' => $channel]);
     $discord = Mockery::mock(Discord::class);
 
-    (new KobolodoHandler)($message, $discord);
+    (new KoboldoHandler)($message, $discord);
 });
