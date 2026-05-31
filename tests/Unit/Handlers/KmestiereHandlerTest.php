@@ -5,20 +5,9 @@ use App\Services\KaasClient;
 use Discord\Discord;
 use Discord\Parts\Channel\Channel;
 
-// Helper: full valid API payload
 function kmestierePayload(): string
 {
-    return json_encode([
-        'KoboldName' => 'Grix',
-        'KoboldSurname' => 'Baffi',
-        'KoboldOrigin' => 'Caverne del Nord',
-        'KoboldColor' => 'Verde muschio',
-        'SpecialTrait' => 'Vede al buio',
-        'KoboldKinship' => 'Clan dei Baffi',
-        'KoboldDish' => 'Zuppa di funghi',
-        'KoboldStory' => 'Nato sotto una roccia fortunata.',
-        'KoboldJob' => 'Minatore',
-    ]);
+    return json_encode(['KoboldJob' => 'Minatore']);
 }
 
 it('sends an acknowledgement immediately, then the job on success', function () {
@@ -106,6 +95,24 @@ it('sends a portal-closed error on non-429 HTTP error', function () {
     $kaas->shouldReceive('generate')
         ->once()
         ->andReturn(\React\Promise\reject(new RuntimeException('http_error:503')));
+
+    $message = fakeMessage(['channel' => $channel]);
+    $discord = Mockery::mock(Discord::class);
+
+    (new KmestiereHandler($kaas))($message, $discord);
+});
+
+it('sends a generic error when KoboldJob is absent from the API response', function () {
+    $channel = Mockery::mock(Channel::class);
+    $channel->shouldReceive('sendMessage')->once()->with('Vediamo cosa dice il registro dei mestieri...');
+    $channel->shouldReceive('sendMessage')
+        ->once()
+        ->with('Evocazione fallita per cause misteriose. Riprova.');
+
+    $kaas = Mockery::mock(KaasClient::class);
+    $kaas->shouldReceive('generate')
+        ->once()
+        ->andReturn(\React\Promise\resolve(json_encode(['KoboldDish' => 'Zuppa di funghi'])));
 
     $message = fakeMessage(['channel' => $channel]);
     $discord = Mockery::mock(Discord::class);
