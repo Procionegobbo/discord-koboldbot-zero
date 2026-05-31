@@ -4,7 +4,9 @@ namespace App\Providers;
 
 use App\Handlers\KaiutoHandler;
 use App\Handlers\KciaoHandler;
+use App\Handlers\KmestiereHandler;
 use App\Handlers\KoboldoHandler;
+use App\Handlers\KricettaHandler;
 use App\Handlers\MessageHandlerRegistry;
 use App\Services\DiscordBotService;
 use App\Services\KaasClient;
@@ -52,6 +54,8 @@ class AppServiceProvider extends ServiceProvider
             $registry->register('!kciao', $app->make(KciaoHandler::class));
             $registry->register('!kaiuto', $app->make(KaiutoHandler::class));
             $registry->register('!koboldo', $app->make(KoboldoHandler::class));
+            $registry->register('!kricetta', $app->make(KricettaHandler::class));
+            $registry->register('!kmestiere', $app->make(KmestiereHandler::class));
 
             return $registry;
         });

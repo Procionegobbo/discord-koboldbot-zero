@@ -14,6 +14,8 @@ class KaiutoHandler
             `!kciao` — Il bot ti saluta
             `!kaiuto` — Mostra questo messaggio di aiuto
             `!koboldo` — Evoca Koboldo
+            `!kricetta` — Ottieni una ricetta casuale dal mondo dei coboldi
+            `!kmestiere` — Scopri un mestiere casuale dal mondo dei coboldi
             TEXT;
 
         $message->channel->sendMessage($help);

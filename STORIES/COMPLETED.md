@@ -11,3 +11,6 @@
 - [011-di-wiring-for-kaas-and-koboldohandler.md](COMPLETED/011-di-wiring-for-kaas-and-koboldohandler.md)
 - [012-unit-tests-kaas-client.md](COMPLETED/012-unit-tests-kaas-client.md)
 - [013-unit-tests-koboldohandler.md](COMPLETED/013-unit-tests-koboldohandler.md)
+- [014-kricetta-handler.md](COMPLETED/014-kricetta-handler.md)
+- [015-kmestiere-handler.md](COMPLETED/015-kmestiere-handler.md)
+- [016-register-handlers-and-update-help.md](COMPLETED/016-register-handlers-and-update-help.md)
