@@ -11,7 +11,9 @@ it('sends a help message listing all commands', function () {
         ->with(Mockery::on(function (string $content): bool {
             return str_contains($content, '!kciao')
                 && str_contains($content, '!kaiuto')
-                && str_contains($content, '!koboldo');
+                && str_contains($content, '!koboldo')
+                && str_contains($content, '!kricetta')
+                && str_contains($content, '!kmestiere');
         }));
 
     $message = fakeMessage(['channel' => $channel]);
